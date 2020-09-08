@@ -40,6 +40,8 @@ public class WorkflowService {
 	public void completeUserTask(DelegateTask task) {
 		String a = (String) task.getVariable("employeeId");
 		System.out.println("Complete User Stage " + a);
+		String approval = (String) task.getVariable("approval");
+		System.out.println("Complete User Stage for employee " + a + " ,approval "  + approval);
 	}
 	public void printUserTask() {
 		System.out.println("All User Stage");

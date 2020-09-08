@@ -49,7 +49,9 @@ public class WorkflowController {
 		Task task = taskService.createTaskQuery().processInstanceId(pi.getProcessInstanceId()).singleResult();
 		
 		System.out.println("Completing task " + task.getName() + " ,Business ID " + task.getBusinessKey());
-		taskService.complete(task.getId());
+		Map<String, Object> variableMap = new HashMap<>();
+		variableMap.put("approval", "Approved");
+		taskService.complete(task.getId(), variableMap);
 	}
 	
 	@GetMapping("/getlistOfUserTask") 
