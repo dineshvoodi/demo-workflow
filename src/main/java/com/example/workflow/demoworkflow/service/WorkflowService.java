@@ -29,9 +29,10 @@ public class WorkflowService {
 		String a = (String) execution.getVariable("employeeId");
 		System.out.println("Start User Stage " + a);
 	}
-	public void createUserTask(DelegateTask task) {
+	public void createUserTask(DelegateTask task, DelegateExecution execution) {
 		String a = (String) task.getVariable("employeeId");
-		System.out.println("Create User Stage " + a);
+		String a1 = (String) execution.getVariable("employeeId");
+		System.out.println("Create User Stage " + a + a1);
 	}
 	public void assignUserTask(DelegateTask task) {
 		String a = (String) task.getVariable("employeeId");
@@ -49,6 +50,10 @@ public class WorkflowService {
 	public void endUserTask(DelegateExecution execution) {
 		String a = (String) execution.getVariable("employeeId");
 		System.out.println("End User Stage " + a);
+	}
+	public void printServiceTask(DelegateExecution execution) {
+		String approval = (String) execution.getVariable("approval");
+		System.out.println("Execution Service Stage " + approval);
 	}
 	// User task ended
 	
