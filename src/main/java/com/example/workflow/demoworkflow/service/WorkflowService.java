@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WorkflowService {
 	
-	// Service task start
+	// Service task workflow start
 	public void startTask(DelegateExecution execution) {
 		int a = (int) execution.getVariable("a");
 		System.out.println("Start Service Task Stage" + a);
@@ -21,10 +21,14 @@ public class WorkflowService {
 	public void endTask(DelegateExecution execution) {
 		int a = (int) execution.getVariable("a");
 		System.out.println("End Service Stage" + a);
+		execution.setVariable("bothFlows", false);
 	}
-	// Service task end
+	public void printOutput(String message) {
+		System.out.println(message);
+	}
+	// Service task workflow end
 	
-	// User task start
+	// User task workflow start
 	public void startUserTask(DelegateExecution execution) {
 		String a = (String) execution.getVariable("employeeId");
 		System.out.println("Start User Stage " + a);
@@ -55,6 +59,6 @@ public class WorkflowService {
 		String approval = (String) execution.getVariable("approval");
 		System.out.println("Execution Service Stage " + approval);
 	}
-	// User task ended
+	// User task workflow ended
 	
 }
