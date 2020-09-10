@@ -21,7 +21,7 @@ public class WorkflowService {
 	public void endTask(DelegateExecution execution) {
 		int a = (int) execution.getVariable("a");
 		System.out.println("End Service Stage" + a);
-		execution.setVariable("bothFlows", false);
+		execution.setVariable("bothFlows", true);
 	}
 	public void printOutput(String message) {
 		System.out.println(message);

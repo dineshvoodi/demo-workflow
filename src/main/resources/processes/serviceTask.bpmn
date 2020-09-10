@@ -14,16 +14,14 @@
         <activiti:executionListener event="end" expression="${workflowService.endTask(execution)}"></activiti:executionListener>
       </extensionElements>
     </serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
     <serviceTask id="servicetask2" name="Flow A" activiti:expression="${workflowService.printOutput(&quot;Service A&quot;)}"></serviceTask>
     <serviceTask id="servicetask3" name="Flow B" activiti:expression="${workflowService.printOutput(&quot;Service B&quot;)}"></serviceTask>
     <sequenceFlow id="flow2" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="flow3" sourceRef="exclusivegateway1" targetRef="servicetask2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bothFlows == true}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow4" sourceRef="exclusivegateway1" targetRef="servicetask3">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bothFlows == false}]]></conditionExpression>
-    </sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="exclusivegateway1" targetRef="servicetask3"></sequenceFlow>
     <sequenceFlow id="flow5" sourceRef="servicetask3" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow6" sourceRef="servicetask2" targetRef="endevent1"></sequenceFlow>
   </process>
